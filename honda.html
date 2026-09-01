@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sparepart dan aksesoris Honda original dan aftermarket terpilih. Vario, Beat, Scoopy, PCX - Garasi Modif.">
+    <title>Honda Parts - Garasi Modif</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <style>
+        /* ===== Honda Page Specific Styles ===== */
+
+        .hero-honda {
+            position: relative;
+            padding: 120px 8% 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-honda::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center top, var(--honda-red-glow) 0%, transparent 60%);
+            z-index: 0;
+        }
+
+        .hero-honda .hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--honda-red);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .hero-honda h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 14px;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-honda p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto 28px;
+            animation: fadeInUp 0.8s ease-out 0.15s both;
+        }
+
+        .hero-honda .btn-primary {
+            background: linear-gradient(135deg, var(--honda-red), #ff6b6b);
+            box-shadow: 0 4px 20px var(--honda-red-glow);
+        }
+
+        .hero-honda .btn-primary:hover {
+            box-shadow: 0 8px 35px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Kategori Section */
+        .kategori-section {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .kategori-section h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .kategori-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .kategori-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 24px 20px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kategori-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--honda-red);
+            transform: scaleX(0);
+            transition: transform var(--transition-smooth);
+        }
+
+        .kategori-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(230, 57, 70, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .kategori-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .kategori-card.active {
+            border-color: var(--honda-red);
+            background: rgba(230, 57, 70, 0.15);
+            box-shadow: 0 6px 20px var(--honda-red-glow);
+            transform: translateY(-4px);
+        }
+
+        .kategori-card.active::before {
+            transform: scaleX(1);
+        }
+
+        .tag-kategori-honda {
+            display: inline-block;
+            font-size: 0.72rem;
+            background: rgba(230, 57, 70, 0.15);
+            color: var(--honda-red);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid rgba(230, 57, 70, 0.25);
+            width: fit-content;
+        }
+
+        .empty-filter-honda {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .empty-filter-honda.visible {
+            display: block;
+        }
+
+        .kategori-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Produk Section */
+        .produk-section {
+            padding: 60px 8% 80px;
+        }
+
+        .produk-section h2 {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .produk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 35px;
+        }
+
+        .produk-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produk-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .produk-card .produk-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: var(--bg-secondary);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .produk-card .img-wrapper {
+            overflow: hidden;
+        }
+
+        .produk-card:hover .produk-img {
+            transform: scale(1.07);
+        }
+
+        .produk-card .card-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produk-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .produk-card .harga {
+            color: var(--honda-red);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            margin-top: auto;
+        }
+
+        .btn-wa-buy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+            border: none;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-wa-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--accent-green-glow);
+        }
+
+        /* Page Footer */
+        .page-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            padding: 25px 8%;
+            text-align: center;
+        }
+
+        .page-footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-honda {
+                padding: 80px 5% 50px;
+            }
+
+            .kategori-section,
+            .produk-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar" id="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="images/LOGO.jpeg" alt="Riss Market Logo" class="logo-img">
+            <div class="logo">Riss<span>Market</span></div>
+        </a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="honda.html" class="active">Honda</a>
+            <a href="yamaha.html">Yamaha</a>
+            <a href="index.html#kategori">Part & Aksesoris</a>
+            <a href="aboutus.html">About Me</a>
+            <a href="https://wa.me/6285956423009" class="btn-head">💬 Tanya Mekanik</a>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-honda">
+        <div class="hero-inner">
+            <span class="hero-badge">Honda Genuine Parts</span>
+            <h1>Sparepart Asli Honda (AHM)</h1>
+            <p>Jaminan suku cadang original untuk performa terbaik motor Honda Anda. Tersedia juga aftermarket pilihan berkualitas.</p>
+            <a href="#produk" class="btn-primary">Lihat Katalog</a>
+        </div>
+    </section>
+
+    <!-- Kategori Sparepart -->
+    <section class="kategori-section">
+        <h2>Kategori Pilihan</h2>
+        <p class="section-subtitle">Pilih kategori part sesuai kebutuhan motor Honda kamu (Klik untuk memfilter)</p>
+        <div class="kategori-grid">
+            <div class="kategori-card active fade-in" onclick="filterKategoriHonda('semua', this)">
+                <span class="kategori-icon">🏍️</span>
+                Semua Part Honda
+            </div>
+            <div class="kategori-card fade-in" onclick="filterKategoriHonda('mesin', this)">
+                <span class="kategori-icon">⚙️</span>
+                Mesin & Transmisi
+            </div>
+            <div class="kategori-card fade-in" onclick="filterKategoriHonda('rem', this)">
+                <span class="kategori-icon">🛞</span>
+                Pengereman & Ban
+            </div>
+            <div class="kategori-card fade-in" onclick="filterKategoriHonda('kelistrikan', this)">
+                <span class="kategori-icon">⚡</span>
+                Kelistrikan & Aki
+            </div>
+            <div class="kategori-card fade-in" onclick="filterKategoriHonda('oli', this)">
+                <span class="kategori-icon">🛢️</span>
+                Oli & Cairan
+            </div>
+        </div>
+    </section>
+
+    <!-- Daftar Produk -->
+    <section id="produk" class="produk-section">
+        <h2>Katalog Part Honda</h2>
+        <p class="section-subtitle" id="kategoriSubtitle" style="text-align:center;">Menampilkan semua part original & modifikasi Honda</p>
+        <div class="produk-grid" id="hondaProductGrid">
+            
+            <!-- Mesin 1 -->
+            <div class="produk-card fade-in" data-kategori="mesin">
+                <div class="img-wrapper">
+                    <img src="images/kirian.jpg" alt="V-Belt Set AHM" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Mesin & Transmisi</span>
+                    <h3>V-Belt Set Beat FI / Vario 125/150 AHM</h3>
+                    <p class="harga">Rp 160.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('V-Belt Set Beat FI / Vario 125/150 AHM')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Mesin 2 -->
+            <div class="produk-card fade-in" data-kategori="mesin">
+                <div class="img-wrapper">
+                    <img src="images/kirian.jpg" alt="Paket Kirian CVT Vario" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Mesin & Transmisi</span>
+                    <h3>Paket Roller & Per CVT Honda PCX / Vario 160</h3>
+                    <p class="harga">Rp 145.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Paket Roller & Per CVT Honda PCX / Vario 160')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Mesin 3 -->
+            <div class="produk-card fade-in" data-kategori="mesin">
+                <div class="img-wrapper">
+                    <img src="images/kirian.jpg" alt="Kampas Ganda Otomatis" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Mesin & Transmisi</span>
+                    <h3>Kampas Ganda Otomatis AHM Honda Matic</h3>
+                    <p class="harga">Rp 135.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Kampas Ganda Otomatis AHM Honda Matic')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Rem 1 -->
+            <div class="produk-card fade-in" data-kategori="rem">
+                <div class="img-wrapper">
+                    <img src="images/masterem.webp" alt="Kampas Rem Depan" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Pengereman & Ban</span>
+                    <h3>Kampas Rem Depan Cakram (Nissin AHM)</h3>
+                    <p class="harga">Rp 45.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Kampas Rem Depan Cakram (Nissin AHM)')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Rem 2 -->
+            <div class="produk-card fade-in" data-kategori="rem">
+                <div class="img-wrapper">
+                    <img src="images/masterem.webp" alt="Master Rem RCB" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Pengereman & Ban</span>
+                    <h3>Master Rem RCB Oval E2 Honda Vario/Beat/PCX</h3>
+                    <p class="harga">Rp 480.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Master Rem RCB Oval E2 Honda Vario/Beat/PCX')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Rem 3 -->
+            <div class="produk-card fade-in" data-kategori="rem">
+                <div class="img-wrapper">
+                    <img src="images/velg_racing.jpg" alt="Piringan Cakram TDR" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Pengereman & Ban</span>
+                    <h3>Piringan Cakram TDR Floating Vario 160 (260mm)</h3>
+                    <p class="harga">Rp 320.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Piringan Cakram TDR Floating Vario 160')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Kelistrikan 1 -->
+            <div class="produk-card fade-in" data-kategori="kelistrikan">
+                <div class="img-wrapper">
+                    <img src="images/shok.jpg" alt="Busi Honda AHM" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Kelistrikan & Aki</span>
+                    <h3>Busi NGK CPR9EA-9 Original AHM</h3>
+                    <p class="harga">Rp 25.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Busi NGK CPR9EA-9 Original AHM')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Kelistrikan 2 -->
+            <div class="produk-card fade-in" data-kategori="kelistrikan">
+                <div class="img-wrapper">
+                    <img src="images/lampu_led.jpg" alt="Lampu LED Projie" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Kelistrikan & Aki</span>
+                    <h3>Lampu LED Projie Headlamp Honda Beat/Vario</h3>
+                    <p class="harga">Rp 350.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Lampu LED Projie Headlamp Honda Beat/Vario')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Kelistrikan 3 -->
+            <div class="produk-card fade-in" data-kategori="kelistrikan">
+                <div class="img-wrapper">
+                    <img src="images/handlebar.jpg" alt="Busi Laser Iridium" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Kelistrikan & Aki</span>
+                    <h3>Busi NGK Laser Iridium CPR9EAIX-9 AHM</h3>
+                    <p class="harga">Rp 95.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Busi NGK Laser Iridium CPR9EAIX-9 AHM')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Oli 1 -->
+            <div class="produk-card fade-in" data-kategori="oli">
+                <div class="img-wrapper">
+                    <img src="images/oli_mesin.jpg" alt="Oli AHM MPX2" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Oli & Cairan</span>
+                    <h3>Oli AHM MPX2 Matic 0.8L 10W-30</h3>
+                    <p class="harga">Rp 55.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Oli AHM MPX2 Matic 0.8L 10W-30')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Oli 2 -->
+            <div class="produk-card fade-in" data-kategori="oli">
+                <div class="img-wrapper">
+                    <img src="images/oli_mesin.jpg" alt="Oli AHM SPX2" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Oli & Cairan</span>
+                    <h3>Oli AHM SPX2 Fully Synthetic 0.8L (PCX/ADV)</h3>
+                    <p class="harga">Rp 72.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Oli AHM SPX2 Fully Synthetic 0.8L')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Oli 3 -->
+            <div class="produk-card fade-in" data-kategori="oli">
+                <div class="img-wrapper">
+                    <img src="images/oli_mesin.jpg" alt="Coolant Radiator AHM" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori-honda">Oli & Cairan</span>
+                    <h3>Coolant Radiator Pre-mix Honda AHM 1 Liter</h3>
+                    <p class="harga">Rp 38.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Coolant Radiator Pre-mix Honda AHM 1 Liter')">💬 Beli via WA</button>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-filter-honda" id="emptyNotice">
+                <p style="font-size:2rem; margin-bottom:8px;">😕</p>
+                <h3 style="color:var(--text-secondary); margin-bottom:8px;">Tidak ada part di kategori ini</h3>
+                <p>Silakan hubungi mekanik kami untuk cek part khusus Honda lainnya.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <p>&copy; 2026 Rizz Market — Honda Genuine Parts. Buka Tiap Hari 09.00 - 21.00 WITA.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const WA_NUMBER = "6285956423009";
+
+        function pesanWA(namaProduk) {
+            const pesan = `Halo Rizz Market, saya ingin membeli sparepart Honda: *${namaProduk}*. Apakah stok masih tersedia?`;
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        // Filter Kategori Honda
+        function filterKategoriHonda(kategori, el) {
+            // Update active state di kategori card
+            document.querySelectorAll('.kategori-card').forEach(card => card.classList.remove('active'));
+            if (el) el.classList.add('active');
+
+            const categoryNames = {
+                'semua': 'semua part original & modifikasi Honda',
+                'mesin': 'kategori Mesin & Transmisi',
+                'rem': 'kategori Pengereman & Ban',
+                'kelistrikan': 'kategori Kelistrikan & Aki',
+                'oli': 'kategori Oli & Cairan'
+            };
+
+            const subtitle = document.getElementById('kategoriSubtitle');
+            if (subtitle) {
+                subtitle.textContent = `Menampilkan ${categoryNames[kategori] || 'kategori terpilih'}`;
+            }
+
+            const cards = document.querySelectorAll('#hondaProductGrid .produk-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardKat = card.dataset.kategori;
+                if (kategori === 'semua' || cardKat === kategori) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 40);
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const emptyNotice = document.getElementById('emptyNotice');
+            if (emptyNotice) {
+                emptyNotice.classList.toggle('visible', visibleCount === 0);
+            }
+        }
+
+        // Hamburger menu toggle
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navMenu').classList.toggle('open');
+        }
+
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('hamburger').classList.remove('active');
+                document.getElementById('navMenu').classList.remove('open');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

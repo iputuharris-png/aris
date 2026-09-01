@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content=" Market - Spesialis part modifikasi & aksesoris Honda dan Yamaha. Plug and Play, stok original & aftermarket terpilih.">
+    <title> Market - Part & Aksesoris Honda & Yamaha</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar" id="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="images/LOGO.jpeg" alt="Riss Market Logo" class="logo-img">
+            <div class="logo">Riss<span>Market</span></div>
+        </a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-overlay" id="navOverlay" onclick="toggleMenu()"></div>
+        <nav id="navMenu">
+            <a href="index.html" class="active">Home</a>
+            <a href="honda.html">Honda</a>
+            <a href="yamaha.html">Yamaha</a>
+            <a href="#kategori">Part & Aksesoris</a>
+            <a href="aboutus.html">About Me</a>
+            <div class="nav-actions-group">
+                <button class="nav-badge-btn" onclick="openWishlistModal()" title="Lihat Wishlist">❤️ <span
+                        class="count-badge" id="wishlistBadge">0</span></button>
+                <button class="nav-badge-btn" onclick="openCartModal()" title="Lihat Keranjang Belanja">🛒 <span
+                        class="count-badge" id="cartBadge">0</span></button>
+            </div>
+            <a href="#kontak" class="btn-head">💬 Tanya Mekanik</a>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h1>Ready Part Modif <br><span class="highlight" id="typed-text"></span><span class="typed-cursor">|</span>
+            </h1>
+            <p>Dari harian, touring, sampai kebutuhan road race. Tinggal PNP (Plug and Play), stok terjamin original &
+                aftermarket terpilih.</p>
+            <div class="hero-buttons">
+                <a href="#kategori" class="btn-primary" id="btnKatalog">🛒 Lihat Katalog Part</a>
+                <a href="https://wa.me/6285956423009?text=Halo%20Garasi%20Modif%2C%20saya%20ingin%20konsultasi%20part%20motor"
+                    class="btn-secondary" target="_blank">💬 Chat Mekanik</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stat-item fade-in">
+            <div class="stat-number" data-target="10" data-suffix="+">0</div>
+            <div class="stat-label">Produk Tersedia</div>
+        </div>
+        <div class="stat-item fade-in">
+            <div class="stat-number" data-target="100" data-suffix="%">0</div>
+            <div class="stat-label">Garansi Original</div>
+        </div>
+        <div class="stat-item fade-in">
+            <div class="stat-number" data-target="12" data-suffix=" Jam">0</div>
+            <div class="stat-label">Jam Operasional / Hari</div>
+        </div>
+    </section>
+
+    <!-- Brands Quick Link -->
+    <section class="brand-section">
+        <h2 class="fade-in">Pilih Pabrikan</h2>
+        <p class="section-subtitle fade-in">Temukan part modifikasi terbaik untuk motor kesayangan kamu</p>
+
+        <div class="brand-grid">
+            <a href="honda.html" class="brand-card honda fade-in-left" id="brandHonda">
+                <h3>HONDA</h3>
+                <p>Vario, Beat, Scoopy, PCX, CBR</p>
+                <span class="brand-arrow">Lihat Part →</span>
+            </a>
+            <a href="yamaha.html" class="brand-card yamaha fade-in-right" id="brandYamaha">
+                <h3>YAMAHA</h3>
+                <p>NMAX, Aerox, XMAX, R15, MT-15</p>
+                <span class="brand-arrow">Lihat Part →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Katalog Produk/Kategori -->
+    <section id="kategori" class="products">
+        <h2 class="fade-in">Part Populer</h2>
+        <p class="section-subtitle fade-in" style="text-align:center;">Aksesoris dan part performa terlaris minggu ini
+        </p>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs fade-in">
+            <button class="filter-tab active" data-filter="semua">Semua</button>
+            <button class="filter-tab" data-filter="honda">Honda</button>
+            <button class="filter-tab" data-filter="yamaha">Yamaha</button>
+            <button class="filter-tab" data-filter="universal">Universal</button>
+        </div>
+
+        <!-- Search Bar & Sort -->
+        <div class="search-section fade-in">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Cari part... (cth: knalpot, rem, shockbreaker)"
+                    autocomplete="off">
+                <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+            </div>
+        </div>
+
+        <div class="filter-controls-bar fade-in">
+            <span style="font-size:0.85rem; color:var(--text-secondary);">Urutkan:</span>
+            <select class="sort-select" id="sortSelect" onchange="sortProducts(this.value)">
+                <option value="default">Rekomendasi</option>
+                <option value="price-asc">Harga: Terendah ke Tertinggi</option>
+                <option value="price-desc">Harga: Tertinggi ke Terendah</option>
+                <option value="name-asc">Nama Part (A - Z)</option>
+            </select>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+
+            <!-- Product 1 -->
+            <div class="card fade-in" data-category="honda" data-name="Master Rem & Pengereman" data-price-min="450000"
+                data-price-max="2500000" data-img="images/masterem.webp"
+                data-desc="Brembo, Nissin, RCB. Cocok buat Vario/PCX/Aerox. Material CNC aluminium." data-tag="Honda"
+                data-pnp="true">
+                <div class="card-image" onclick="openLightbox('images/masterem.webp', 'Master Rem & Pengereman')">
+                    <span class="tag honda-tag">Honda</span>
+                    <button class="btn-wishlist"
+                        onclick="event.stopPropagation(); toggleWishlist(this, 'Master Rem & Pengereman')"
+                        title="Simpan ke Wishlist">♡</button>
+                    <img src="images/masterem.webp" alt="Master Rem" loading="lazy">
+                    <div class="img-overlay"><span>🔍 Lihat Foto</span></div>
+                </div>
+                <div class="card-body">
+                    <h3>Master Rem & Pengereman</h3>
+                    <p class="desc">Brembo, Nissin, RCB. Cocok buat Vario/PCX/Aerox. Material CNC aluminium.</p>
+                    <p class="price">Rp 450.000 - Rp 2.500.000</p>
+                    <div class="card-actions">
+                        <button class="btn-buy"
+                            onclick="addToCart('Master Rem & Pengereman', 450000, 'Rp 450.000 - Rp 2.500.000', 'images/masterem.webp')">🛒
+                            + Keranjang</button>
+                        <button class="btn-buy"
+                            style="background:rgba(45,212,191,0.1); border-color:rgba(45,212,191,0.25); color:var(--accent-teal);"
+                            onclick="openQuickView(this)">👁️ Detail</button>
+                        <button class="btn-wa-small" onclick="pesanWA('Master Rem & Pengereman')"
+                            title="Beli via WhatsApp">💬</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="card fade-in" data-category="yamaha" data-name="Shockbreaker / Suspensi" data-price-min="350000"
+                data-price-max="3200000" data-img="images/shok.jpg"
+                data-desc="YSS, KTC Kytaco, RCB. Pilihan empuk buat harian & touring. Tabung atas/bawah."
+                data-tag="Yamaha" data-pnp="true">
+                <div class="card-image" onclick="openLightbox('images/shok.jpg', 'Shockbreaker / Suspensi')">
+                    <span class="tag yamaha-tag">Yamaha</span>
+                    <button class="btn-wishlist"
+                        onclick="event.stopPropagation(); toggleWishlist(this, 'Shockbreaker / Suspensi')"
+                        title="Simpan ke Wishlist">♡</button>
+                    <img src="images/shok.jpg" alt="Shockbreaker" loading="lazy">
+                    <div class="img-overlay"><span>🔍 Lihat Foto</span></div>
+                </div>
+                <div class="card-body">
+                    <h3>Shockbreaker / Suspensi</h3>
+                    <p class="desc">YSS, KTC Kytaco, RCB. Pilihan empuk buat harian & touring. Tabung atas/bawah.</p>
+                    <p class="price">Rp 350.000 - Rp 3.200.000</p>
+                    <div class="card-actions">
+                        <button class="btn-buy"
+                            onclick="addToCart('Shockbreaker / Suspensi', 350000, 'Rp 350.000 - Rp 3.200.000', 'images/shok.jpg')">🛒
+                            + Keranjang</button>
+                        <button class="btn-buy"
+                            style="background:rgba(45,212,191,0.1); border-color:rgba(45,212,191,0.25); color:var(--accent-teal);"
+                            onclick="openQuickView(this)">👁️ Detail</button>
+                        <button class="btn-wa-small" onclick="pesanWA('Shockbreaker / Suspensi')"
+                            title="Beli via WhatsApp">💬</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="card fade-in" data-category="universal" data-name="Knalpot Racing & Standard Racing"
+                data-price-min="10400000" data-price-max="15800000" data-img="images/KENALPOT.jpg"
+                data-desc="R9, Proliner, WR3, Tzeng. Suara adem bass sampai teriak. Full system & slip-on."
+                data-tag="Honda & Yamaha" data-pnp="true">
+                <div class="card-image"
+                    onclick="openLightbox('images/KENALPOT.jpg', 'Knalpot Racing & Standard Racing')">
+                    <span class="tag universal-tag">Honda & Yamaha</span>
+                    <button class="btn-wishlist"
+                        onclick="event.stopPropagation(); toggleWishlist(this, 'Knalpot Racing & Standard Racing')"
+                        title="Simpan ke Wishlist">♡</button>
+                    <img src="images/KENALPOT.jpg" alt="Knalpot Racing" loading="lazy">
+                    <div class="img-overlay"><span>🔍 Lihat Foto</span></div>
+                </div>
+                <div class="card-body">
+                    <h3>Knalpot Racing & Standard Racing</h3>
+                    <p class="desc">R9, Proliner, WR3, Tzeng. Suara adem bass sampai teriak. Full system & slip-on.</p>
+                    <p class="price">Rp 10.400.000 - Rp 15.800.000</p>
+                    <div class="card-actions">
+                        <button class="btn-buy"
+                            onclick="addToCart('Knalpot Racing & Standard Racing', 10400000, 'Rp 10.400.000 - Rp 15.800.000', 'images/KENALPOT.jpg')">🛒
+                            + Keranjang</button>
+                        <button class="btn-buy"
+                            style="background:rgba(45,212,191,0.1); border-color:rgba(45,212,191,0.25); color:var(--accent-teal);"
+                            onclick="openQuickView(this)">👁️ Detail</button>
+                        <button class="btn-wa-small" onclick="pesanWA('Knalpot Racing & Standard Racing')"
+                            title="Beli via WhatsApp">💬</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="card fade-in" data-category="universal" data-name="Paket Kirian CVT Full Set"
+                data-price-min="850000" data-price-max="1250000" data-img="images/kirian.jpg"
+                data-desc="Pulley bubut, roller, per CVT, mangkok ganda anti gredek. PNP semua matic."
+                data-tag="CVT / Engine" data-pnp="true">
+                <div class="card-image" onclick="openLightbox('images/kirian.jpg', 'Paket Kirian CVT Full Set')">
+                    <span class="tag universal-tag">CVT / Engine</span>
+                    <button class="btn-wishlist"
+                        onclick="event.stopPropagation(); toggleWishlist(this, 'Paket Kirian CVT Full Set')"
+                        title="Simpan ke Wishlist">♡</button>
+                    <img src="images/kirian.jpg" alt="Paket Kirian CVT" loading="lazy">
+                    <div class="img-overlay"><span>🔍 Lihat Foto</span></div>
+                </div>
+                <div class="card-body">
+                    <h3>Paket Kirian CVT Full Set</h3>
+                    <p class="desc">Pulley bubut, roller, per CVT, mangkok ganda anti gredek. PNP semua matic.</p>
+                    <p class="price">Rp 850.000 - Rp 1.250.000</p>
+                    <div class="card-actions">
+                        <button class="btn-buy"
+                            onclick="addToCart('Paket Kirian CVT Full Set', 850000, 'Rp 850.000 - Rp 1.250.000', 'images/kirian.jpg')">🛒
+                            + Keranjang</button>
+                        <button class="btn-buy"
+                            style="background:rgba(45,212,191,0.1); border-color:rgba(45,212,191,0.25); color:var(--accent-teal);"
+                            onclick="openQuickView(this)">👁️ Detail</button>
+                        <button class="btn-wa-small" onclick="pesanWA('Paket Kirian CVT Full Set')"
+                            title="Beli via WhatsApp">💬</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="card fade-in" data-category="universal" data-name="Handlebar, Spion & Grip Set"
+                data-price-min="180000" data-price-max="950000" data-img="images/handlebar.jpg"
+                data-desc="Spion bar end CNC, grip pro taper, handlebar racing. Tampilan keren & ergonomis."
+                data-tag="Universal" data-pnp="true">
+                <div class="card-image" onclick="openLightbox('images/handlebar.jpg', 'Handlebar, Spion & Grip Set')">
+                    <span class="tag universal-tag">Universal</span>
+                    <button class="btn-wishlist"
+                        onclick="event.stopPropagation(); toggleWishlist(this, 'Handlebar, Spion & Grip Set')"
+                        title="Simpan ke Wishlist">♡</button>
+                    <img src="images/handlebar.jpg" alt="Handlebar & Grip" loading="lazy">
+                    <div class="img-overlay"><span>🔍 Lihat Foto</span></div>
+                </div>
+                <div class="card-body">
+                    <h3>Handlebar, Spion & Grip Set</h3>
+                    <p class="desc">Spion bar end CNC, grip pro taper, handlebar racing. Tampilan keren & ergonomis.</p>
+                    <p class="price">Rp 180.000 - Rp 950.000</p>
+                    <div class="card-actions">
+                        <button class="btn-buy"
+                            onclick="addToCart('Handlebar, Spion & Grip Set', 180000, 'Rp 180.000 - Rp 950.000', 'images/handlebar.jpg')">🛒
+                            + Keranjang</button>
+                        <button class="btn-buy"
+                            style="background:rgba(45,212,191,0.1); border-color:rgba(45,212,191,0.25); color:var(--accent-teal);"
+                            onclick="openQuickView(this)">👁️ Detail</button>
+                        <button class="btn-wa-small" onclick="pesanWA('Handlebar, Spion & Grip Set')"
+                            title="Beli via WhatsApp">💬</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="card fade-in" data-category="universal" data-name="Lampu LED & Projie Set"
+                data-price-min="250000" data-price-max="1800000" data-img="images/lampu_led.jpg"
+                data-desc="Projie LED HiLo, stoplamp LED, DRL running. Super terang & hemat listrik."
+                data-tag="Kelistrikan" data-pnp="true">
+                <div class="card-image" onclick="openLightbox('images/lampu_led.jpg', 'Lampu LED & Projie Set')">
+                    <span class="tag universal-tag">Kelistrikan</span>
+                    <button class="btn-wishlist"
+                        onclick="event.stopPropagation(); toggleWishlist(this, 'Lampu LED & Projie Set')"
+                        title="Simpan ke Wishlist">♡</button>
+                    <img src="images/lampu_led.jpg" alt="Lampu LED" loading="lazy">
+                    <div class="img-overlay"><span>🔍 Lihat Foto</span></div>
+                </div>
+                <div class="card-body">
+                    <h3>Lampu LED & Projie Set</h3>
+                    <p class="desc">Projie LED HiLo, stoplamp LED, DRL running. Super terang & hemat listrik.</p>
+                    <p class="price">Rp 250.000 - Rp 1.800.000</p>
+                    <div class="card-actions">
+                        <button class="btn-buy"
+                            onclick="addToCart('Lampu LED & Projie Set', 250000, 'Rp 250.000 - Rp 1.800.000', 'images/lampu_led.jpg')">🛒
+                            + Keranjang</button>
+                        <button class="btn-buy"
+                            style="background:rgba(45,212,191,0.1); border-color:rgba(45,212,191,0.25); color:var(--accent-teal);"
+                            onclick="openQuickView(this)">👁️ Detail</button>
+                        <button class="btn-wa-small" onclick="pesanWA('Lampu LED & Projie Set')"
+                            title="Beli via WhatsApp">💬</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="card fade-in" data-category="universal" data-name="Velg Racing & Ban Tapak Lebar"
+                data-price-min="1500000" data-price-max="4200000" data-img="images/velg_racing.jpg"
+                data-desc="TDR, Rossi, Chemco. Ring 14 & 17. Paket velg + ban + cakram. PNP." data-tag="Velg & Ban"
+                data-pnp="true">
+                <div class="card-image"
+                    onclick="openLightbox('images/velg_racing.jpg', 'Velg Racing & Ban Tapak Lebar')">
+                    <span class="tag universal-tag">Velg & Ban</span>
+                    <button class="btn-wishlist"
+                        onclick="event.stopPropagation(); toggleWishlist(this, 'Velg Racing & Ban Tapak Lebar')"
+                        title="Simpan ke Wishlist">♡</button>
+                    <img src="images/velg_racing.jpg" alt="Velg Racing" loading="lazy">
+                    <div class="img-overlay"><span>🔍 Lihat Foto</span></div>
+                </div>
+                <div class="card-body">
+                    <h3>Velg Racing & Ban Tapak Lebar</h3>
+                    <p class="desc">TDR, Rossi, Chemco. Ring 14 & 17. Paket velg + ban + cakram. PNP.</p>
+                    <p class="price">Rp 1.500.000 - Rp 4.200.000</p>
+                    <div class="card-actions">
+                        <button class="btn-buy"
+                            onclick="addToCart('Velg Racing & Ban Tapak Lebar', 1500000, 'Rp 1.500.000 - Rp 4.200.000', 'images/velg_racing.jpg')">🛒
+                            + Keranjang</button>
+                        <button class="btn-buy"
+                            style="background:rgba(45,212,191,0.1); border-color:rgba(45,212,191,0.25); color:var(--accent-teal);"
+                            onclick="openQuickView(this)">👁️ Detail</button>
+                        <button class="btn-wa-small" onclick="pesanWA('Velg Racing & Ban Tapak Lebar')"
+                            title="Beli via WhatsApp">💬</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="card fade-in" data-category="honda" data-name="Oli Mesin & Pelumas Motor" data-price-min="45000"
+                data-price-max="185000" data-img="images/oli_mesin.jpg"
+                data-desc="Motul, Shell Advance, Castrol, MPX2. Matic & manual. Fully synthetic & semi."
+                data-tag="Perawatan" data-pnp="true">
+                <div class="card-image" onclick="openLightbox('images/oli_mesin.jpg', 'Oli Mesin & Pelumas Motor')">
+                    <span class="tag honda-tag">Perawatan</span>
+                    <button class="btn-wishlist"
+                        onclick="event.stopPropagation(); toggleWishlist(this, 'Oli Mesin & Pelumas Motor')"
+                        title="Simpan ke Wishlist">♡</button>
+                    <img src="images/oli_mesin.jpg" alt="Oli Mesin" loading="lazy">
+                    <div class="img-overlay"><span>🔍 Lihat Foto</span></div>
+                </div>
+                <div class="card-body">
+                    <h3>Oli Mesin & Pelumas Motor</h3>
+                    <p class="desc">Motul, Shell Advance, Castrol, MPX2. Matic & manual. Fully synthetic & semi.</p>
+                    <p class="price">Rp 45.000 - Rp 185.000</p>
+                    <div class="card-actions">
+                        <button class="btn-buy"
+                            onclick="addToCart('Oli Mesin & Pelumas Motor', 45000, 'Rp 45000 - Rp 185.000', 'images/oli_mesin.jpg')">🛒
+                            + Keranjang</button>
+                        <button class="btn-buy"
+                            style="background:rgba(45,212,191,0.1); border-color:rgba(45,212,191,0.25); color:var(--accent-teal);"
+                            onclick="openQuickView(this)">👁️ Detail</button>
+                        <button class="btn-wa-small" onclick="pesanWA('Oli Mesin & Pelumas Motor')"
+                            title="Beli via WhatsApp">💬</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults">
+                <div class="no-results-icon">😕</div>
+                <h3>Produk tidak ditemukan</h3>
+                <p>Coba kata kunci lain, atau <a
+                        href="https://wa.me/6285956423009?text=Halo%2C%20saya%20mencari%20part%20motor" target="_blank"
+                        style="color:var(--accent-red);">tanya langsung ke mekanik kami</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="fade-in">Pertanyaan Umum</h2>
+        <p class="section-subtitle fade-in" style="text-align:center">Hal yang sering ditanyakan pelanggan kami</p>
+
+        <div class="faq-list">
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apakah part yang dijual original?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Ya, kami menjual part original pabrikan (AHM untuk Honda, YGP untuk Yamaha) dan juga aftermarket
+                        pilihan yang sudah kami kurasi kualitasnya. Setiap produk aftermarket yang kami jual sudah
+                        melewati pengujian dan jaminan kompatibilitas.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apa itu PNP (Plug and Play)?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>PNP artinya part bisa langsung dipasang ke motor tanpa perlu modifikasi dudukan atau bracket
+                        tambahan. Tinggal bongkar part lama, pasang part baru — selesai! Kami pastikan semua part yang
+                        kami jual kompatibel dengan motor yang dituju.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Bisa kirim ke luar kota / luar pulau?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Tentu! Kami melayani pengiriman ke seluruh Indonesia via JNE, J&T, SiCepat, dan POS Indonesia.
+                        Untuk part besar seperti knalpot atau velg, kami gunakan ekspedisi cargo agar biaya kirim lebih
+                        hemat.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Bagaimana cara konsultasi sebelum beli?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Gampang! Langsung chat WhatsApp kami di tombol "Tanya Mekanik" yang ada di website ini. Sebutkan
+                        tipe motor dan kebutuhan kamu, nanti tim mekanik kami akan bantu rekomendasikan part yang paling
+                        cocok.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apakah ada garansi produk?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Ya! Semua part original memiliki garansi resmi dari pabrikan. Untuk part aftermarket, kami
+                        memberikan garansi toko 1-6 bulan tergantung jenis part. Jika ada masalah, hubungi kami dan kami
+                        bantu solusinya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Kontak Chat -->
+    <footer id="kontak">
+        <div class="footer-content fade-in">
+            <h3>Mau konsultasi ukuran atau peruntukan part?</h3>
+            <p>Langsung chat via WhatsApp aja, biar pas di motor & gak salah beli. Tim mekanik kami siap bantu 09.00 -
+                21.00 WITA.</p>
+            <a href="https://wa.me/6285956423009?text=Halo%20Garasi%20Modif%2C%20saya%20ingin%20konsultasi%20part%20motor"
+                class="btn-wa" target="_blank">Chat WhatsApp Mekanik</a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="honda.html">Honda Parts</a>
+            <a href="yamaha.html">Yamaha Parts</a>
+            <a href="aboutus.html">About Me</a>
+            <a href="https://wa.me/6285956423009" target="_blank">WhatsApp</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Market. Buka Tiap Hari 09.00 - 21.00 WITA.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" title="Kembali ke Atas">↑</button>
+
+    <!-- Image Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightboxImg" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal-overlay" id="cartModal" onclick="if(event.target===this) closeCartModal()">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>🛒 Keranjang Belanja Modif</h3>
+                <button class="modal-close-btn" onclick="closeCartModal()">✕</button>
+            </div>
+            <div class="modal-body" id="cartModalBody">
+                <!-- Dynamic Content -->
+            </div>
+            <div class="modal-footer" id="cartModalFooter">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div class="modal-overlay" id="wishlistModal" onclick="if(event.target===this) closeWishlistModal()">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>❤️ Daftar Wishlist Saya</h3>
+                <button class="modal-close-btn" onclick="closeWishlistModal()">✕</button>
+            </div>
+            <div class="modal-body" id="wishlistModalBody">
+                <!-- Dynamic Content -->
+            </div>
+            <div class="modal-footer" id="wishlistModalFooter">
+                <button class="btn-checkout-wa" onclick="checkoutWishlistWA()">💬 Konsultasikan Wishlist via WA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quickViewModal" onclick="if(event.target===this) closeQuickView()">
+        <div class="modal-box" style="max-width: 560px;">
+            <div class="modal-header">
+                <h3 id="qvModalTitle">Detail Part</h3>
+                <button class="modal-close-btn" onclick="closeQuickView()">✕</button>
+            </div>
+            <div class="modal-body" id="qvModalBody">
+                <!-- Dynamic Content -->
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-btns" style="width: 100%;">
+                    <button class="btn-buy" id="qvAddToCartBtn"
+                        style="background:var(--accent-red); border-color:var(--accent-red); color:#fff;">🛒 +
+                        Keranjang</button>
+                    <button class="btn-checkout-wa" id="qvOrderWABtn">💬 Beli via WA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Quick WA Speed Dial -->
+    <div class="floating-speed-dial" id="speedDial">
+        <div class="speed-dial-menu" id="speedDialMenu">
+            <div class="speed-dial-item" onclick="sendSpeedDialWA('stok')">
+                <span>📦</span> Tanya Ketersediaan Stok
+            </div>
+            <div class="speed-dial-item" onclick="sendSpeedDialWA('pnp')">
+                <span>🔧</span> Konsultasi PNP & Tipe Motor
+            </div>
+            <div class="speed-dial-item" onclick="sendSpeedDialWA('ongkir')">
+                <span>🚚</span> Cek Estimasi Ongkos Kirim
+            </div>
+        </div>
+        <button class="speed-dial-btn" id="speedDialToggle" onclick="toggleSpeedDial()"
+            title="Konsultasi Cepat WhatsApp">
+            💬
+        </button>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ===== WHATSAPP CONFIG & INTEGRATION =====
+        const WA_NUMBER = '6285956423009';
+
+        function pesanWA(namaProduk) {
+            const pesan = `Halo  Market, saya ingin membeli: *${namaProduk}*. Apakah stok masih tersedia?`;
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(pesan)}`, '_blank');
+            showToast('success', `Membuka WhatsApp untuk "${namaProduk}"...`);
+        }
+
+        function cekStok(namaProduk, harga) {
+            const pesan = `Halo  Market, saya ingin cek stok:\n\n🛒 *${namaProduk}*\n💰 ${harga}\n\nApakah masih ready? Terima kasih!`;
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(pesan)}`, '_blank');
+            showToast('success', `Cek stok "${namaProduk}" via WhatsApp...`);
+        }
+
+        // ===== HAMBURGER MENU =====
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const overlay = document.getElementById('navOverlay');
+
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
+        }
+
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('hamburger').classList.remove('active');
+                document.getElementById('navMenu').classList.remove('open');
+                document.getElementById('navOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // ===== NAVBAR SCROLL EFFECT =====
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('backToTop');
+            const scrollY = window.scrollY;
+
+            navbar.classList.toggle('scrolled', scrollY > 50);
+            backToTop.classList.toggle('visible', scrollY > 500);
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const offsetTop = target.offsetTop - 70;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }
+            });
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== TYPING ANIMATION =====
+        const typedTexts = ['Honda & Yamaha', 'Vario & NMAX', 'Touring & Harian', 'Road Race Ready'];
+        let typedIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedEl = document.getElementById('typed-text');
+
+        function typeEffect() {
+            const current = typedTexts[typedIndex];
+
+            if (isDeleting) {
+                typedEl.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedEl.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === current.length) {
+                speed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typedIndex = (typedIndex + 1) % typedTexts.length;
+                speed = 500;
+            }
+
+            setTimeout(typeEffect, speed);
+        }
+        typeEffect();
+
+        // ===== COUNTER ANIMATION =====
+        function animateCounter(el) {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = 1 - Math.pow(2, -10 * progress);
+                const current = Math.floor(start + (target - start) * ease);
+
+                el.textContent = current.toLocaleString('id-ID') + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // ===== SCROLL REVEAL ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+
+                        if (entry.target.classList.contains('stat-item')) {
+                            const counter = entry.target.querySelector('.stat-number');
+                            if (counter && !counter.dataset.animated) {
+                                counter.dataset.animated = 'true';
+                                animateCounter(counter);
+                            }
+                        }
+                    }, index * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== PRODUCT FILTER & SEARCH =====
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        let activeFilter = 'semua';
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                activeFilter = tab.dataset.filter;
+                filterProducts();
+            });
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+
+        searchInput.addEventListener('input', () => {
+            searchClear.classList.toggle('visible', searchInput.value.length > 0);
+            filterProducts();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+                searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeCartModal();
+                closeWishlistModal();
+                closeQuickView();
+            }
+        });
+
+        function clearSearch() {
+            searchInput.value = '';
+            searchClear.classList.remove('visible');
+            filterProducts();
+            searchInput.focus();
+        }
+
+        function filterProducts() {
+            const query = searchInput.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('#productGrid .card');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const category = card.dataset.category;
+                const name = card.dataset.name.toLowerCase();
+
+                const matchesFilter = activeFilter === 'semua' || category === activeFilter;
+                const matchesSearch = query === '' || name.includes(query);
+
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.classList.toggle('visible', visibleCount === 0);
+        }
+
+        // ===== SORT PRODUCTS =====
+        function sortProducts(criteria) {
+            const grid = document.getElementById('productGrid');
+            const cards = Array.from(grid.querySelectorAll('.card'));
+
+            cards.sort((a, b) => {
+                if (criteria === 'price-asc') {
+                    return (parseInt(a.dataset.priceMin) || 0) - (parseInt(b.dataset.priceMin) || 0);
+                } else if (criteria === 'price-desc') {
+                    return (parseInt(b.dataset.priceMin) || 0) - (parseInt(a.dataset.priceMin) || 0);
+                } else if (criteria === 'name-asc') {
+                    return a.dataset.name.localeCompare(b.dataset.name);
+                }
+                return 0;
+            });
+
+            cards.forEach(card => grid.appendChild(card));
+            showToast('info', 'Daftar produk telah diurutkan');
+        }
+
+        // ===== IMAGE LIGHTBOX =====
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            const cap = document.getElementById('lightboxCaption');
+
+            img.src = src;
+            cap.textContent = caption;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ===== CART SYSTEM (LOCAL STORAGE) =====
+        let cart = JSON.parse(localStorage.getItem('garasimodif_cart') || '[]');
+
+        function updateBadges() {
+            const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) cartBadge.textContent = cartCount;
+
+            const wishlistBadge = document.getElementById('wishlistBadge');
+            if (wishlistBadge) wishlistBadge.textContent = wishlist.length;
+        }
+
+        function addToCart(name, price, priceStr, img) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ name, price, priceStr, img, qty: 1 });
+            }
+            localStorage.setItem('garasimodif_cart', JSON.stringify(cart));
+            updateBadges();
+            showToast('success', `"${name}" masuk ke keranjang belanja 🛒`);
+        }
+
+        function changeCartQty(name, delta) {
+            const item = cart.find(i => i.name === name);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+                localStorage.setItem('garasimodif_cart', JSON.stringify(cart));
+                updateBadges();
+                renderCart();
+            }
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(i => i.name !== name);
+            localStorage.setItem('garasimodif_cart', JSON.stringify(cart));
+            updateBadges();
+            renderCart();
+            showToast('info', `"${name}" dihapus dari keranjang`);
+        }
+
+        function clearCart() {
+            if (confirm('Kosongkan semua barang di keranjang?')) {
+                cart = [];
+                localStorage.setItem('garasimodif_cart', JSON.stringify(cart));
+                updateBadges();
+                renderCart();
+                showToast('info', 'Keranjang belanja telah dikosongkan');
+            }
+        }
+
+        function openCartModal() {
+            renderCart();
+            document.getElementById('cartModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function renderCart() {
+            const body = document.getElementById('cartModalBody');
+            const footer = document.getElementById('cartModalFooter');
+
+            if (cart.length === 0) {
+                body.innerHTML = `
+                <div class="empty-state">
+                    <span class="empty-state-icon">🛒</span>
+                    <p>Keranjang belanja kamu masih kosong.</p>
+                    <p style="font-size:0.8rem; margin-top:6px;">Pilih part idamanmu dari katalog dan klik <strong>+ Keranjang</strong></p>
+                </div>
+            `;
+                footer.innerHTML = `
+                <button class="btn-checkout-wa" onclick="closeCartModal()">Lihat Katalog Part</button>
+            `;
+                return;
+            }
+
+            let subtotal = 0;
+            let itemsHtml = '<div class="cart-list">';
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                itemsHtml += `
+                <div class="cart-item-card">
+                    <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">Rp ${(item.price).toLocaleString('id-ID')} / pcs</div>
+                    </div>
+                    <div class="cart-item-qty">
+                        <button class="qty-btn" onclick="changeCartQty('${item.name}', -1)">−</button>
+                        <span class="qty-num">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeCartQty('${item.name}', 1)">+</button>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart('${item.name}')" title="Hapus">✕</button>
+                </div>
+            `;
+            });
+            itemsHtml += '</div>';
+            body.innerHTML = itemsHtml;
+
+            footer.innerHTML = `
+            <div class="cart-total-row">
+                <span>Total Estimasi:</span>
+                <span class="cart-total-amount">Rp ${subtotal.toLocaleString('id-ID')}</span>
+            </div>
+            <div class="modal-footer-btns">
+                <button class="btn-clear-cart" onclick="clearCart()">Kosongkan</button>
+                <button class="btn-checkout-wa" onclick="checkoutCartWA()">🚀 Pesan via WhatsApp</button>
+            </div>
+        `;
+        }
+
+        function checkoutCartWA() {
+            if (cart.length === 0) return;
+            let subtotal = 0;
+            let pesan = `Halo  Market, saya ingin order part berikut melalui website:\n\n`;
+
+            cart.forEach((item, index) => {
+                const total = item.price * item.qty;
+                subtotal += total;
+                pesan += `${index + 1}. *${item.name}* (Qty: ${item.qty}) - Rp ${total.toLocaleString('id-ID')}\n`;
+            });
+
+            pesan += `\n💰 *Total Estimasi:* Rp ${subtotal.toLocaleString('id-ID')}\n`;
+            pesan += `\nMohon info ketersediaan stok & ongkos kirim ke alamat saya. Terima kasih!`;
+
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(pesan)}`, '_blank');
+            showToast('success', 'Membuka WhatsApp untuk checkout...');
+        }
+
+        // ===== WISHLIST (LOCAL STORAGE) =====
+        let wishlist = JSON.parse(localStorage.getItem('garasimodif_wishlist') || '[]');
+
+        document.querySelectorAll('.btn-wishlist').forEach(btn => {
+            const card = btn.closest('.card');
+            const name = card.dataset.name || card.querySelector('h3').textContent;
+            if (wishlist.includes(name)) {
+                btn.classList.add('liked');
+                btn.textContent = '♥';
+            }
+        });
+
+        function toggleWishlist(btn, name) {
+            const index = wishlist.indexOf(name);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                btn.classList.remove('liked');
+                btn.textContent = '♡';
+                showToast('info', `"${name}" dihapus dari wishlist`);
+            } else {
+                wishlist.push(name);
+                btn.classList.add('liked');
+                btn.textContent = '♥';
+                showToast('success', `"${name}" ditambahkan ke wishlist ❤️`);
+            }
+            localStorage.setItem('garasimodif_wishlist', JSON.stringify(wishlist));
+            updateBadges();
+        }
+
+        function openWishlistModal() {
+            renderWishlist();
+            document.getElementById('wishlistModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWishlistModal() {
+            document.getElementById('wishlistModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function renderWishlist() {
+            const body = document.getElementById('wishlistModalBody');
+            if (wishlist.length === 0) {
+                body.innerHTML = `
+                <div class="empty-state">
+                    <span class="empty-state-icon">🤍</span>
+                    <p>Daftar wishlist kamu masih kosong.</p>
+                    <p style="font-size:0.8rem; margin-top:6px;">Klik tombol hati <strong>♡</strong> pada part idamanmu untuk menyimpannya.</p>
+                </div>
+            `;
+                return;
+            }
+
+            let html = '<div class="wishlist-list">';
+            wishlist.forEach(name => {
+                const card = document.querySelector(`.card[data-name="${name}"]`);
+                const img = card ? card.dataset.img || card.querySelector('img').src : 'images/masterem.webp';
+                const price = card ? card.querySelector('.price').textContent : 'Hubungi Mekanik';
+                const priceMin = card ? parseInt(card.dataset.priceMin) || 0 : 0;
+
+                html += `
+                <div class="wishlist-item-card">
+                    <img src="${img}" alt="${name}" class="wishlist-item-img">
+                    <div class="wishlist-item-info">
+                        <div class="wishlist-item-title">${name}</div>
+                        <div class="wishlist-item-price">${price}</div>
+                    </div>
+                    <button class="btn-buy" style="padding:6px 10px; font-size:0.75rem;" onclick="addToCart('${name}', ${priceMin}, '${price}', '${img}')">🛒 + Keranjang</button>
+                    <button class="wishlist-item-remove" onclick="removeWishlistItem('${name}')" title="Hapus">✕</button>
+                </div>
+            `;
+            });
+            html += '</div>';
+            body.innerHTML = html;
+        }
+
+        function removeWishlistItem(name) {
+            wishlist = wishlist.filter(item => item !== name);
+            localStorage.setItem('garasimodif_wishlist', JSON.stringify(wishlist));
+
+            // sync button state
+            document.querySelectorAll('.card').forEach(card => {
+                if (card.dataset.name === name) {
+                    const btn = card.querySelector('.btn-wishlist');
+                    if (btn) {
+                        btn.classList.remove('liked');
+                        btn.textContent = '♡';
+                    }
+                }
+            });
+
+            updateBadges();
+            renderWishlist();
+            showToast('info', `"${name}" dihapus dari wishlist`);
+        }
+
+        function checkoutWishlistWA() {
+            if (wishlist.length === 0) {
+                showToast('info', 'Wishlist masih kosong!');
+                return;
+            }
+            let pesan = `Halo  Market, saya tertarik dengan daftar wishlist part motor saya berikut:\n\n`;
+            wishlist.forEach((item, i) => {
+                pesan += `${i + 1}. *${item}*\n`;
+            });
+            pesan += `\nBisa tolong rekomendasikan kecocokan dengan tipe motor saya? Terima kasih!`;
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        // ===== QUICK VIEW MODAL =====
+        let currentQvItem = null;
+
+        function openQuickView(element) {
+            const card = element.closest('.card');
+            if (!card) return;
+
+            const name = card.dataset.name;
+            const img = card.dataset.img || card.querySelector('img').src;
+            const desc = card.dataset.desc || card.querySelector('.desc').textContent;
+            const price = card.querySelector('.price').textContent;
+            const priceMin = parseInt(card.dataset.priceMin) || 0;
+            const tag = card.dataset.tag || 'Universal';
+            const pnp = card.dataset.pnp === 'true';
+
+            currentQvItem = { name, img, desc, price, priceMin };
+
+            document.getElementById('qvModalTitle').textContent = name;
+            document.getElementById('qvModalBody').innerHTML = `
+            <div class="quickview-container">
+                <img src="${img}" alt="${name}" class="quickview-img">
+                <div class="quickview-info">
+                    <div class="quickview-badges">
+                        <span class="badge-tag">${tag}</span>
+                        ${pnp ? '<span class="badge-tag pnp">✓ 100% PNP</span>' : ''}
+                        <span class="badge-tag">Garansi Toko</span>
+                    </div>
+                    <div class="quickview-title">${name}</div>
+                    <div class="quickview-price">${price}</div>
+                    <p class="quickview-desc">${desc}</p>
+                </div>
+            </div>
+        `;
+
+            document.getElementById('qvAddToCartBtn').onclick = () => {
+                addToCart(name, priceMin, price, img);
+            };
+            document.getElementById('qvOrderWABtn').onclick = () => {
+                pesanWA(name);
+            };
+
+            document.getElementById('quickViewModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickViewModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ===== SPEED DIAL CONSULTATION WIDGET =====
+        function toggleSpeedDial() {
+            const menu = document.getElementById('speedDialMenu');
+            menu.classList.toggle('open');
+        }
+
+        function sendSpeedDialWA(topic) {
+            let text = '';
+            if (topic === 'stok') {
+                text = 'Halo  Market, saya ingin tanya ketersediaan stok sparepart motor.';
+            } else if (topic === 'pnp') {
+                text = 'Halo  Market, saya ingin konsultasi modifikasi & kecocokan part PNP untuk motor saya.';
+            } else if (topic === 'ongkir') {
+                text = 'Halo  Market, saya ingin cek estimasi ongkos kirim ke kota saya.';
+            }
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
+            document.getElementById('speedDialMenu').classList.remove('open');
+        }
+
+        // Close speed dial when clicking outside
+        document.addEventListener('click', (e) => {
+            const speedDial = document.getElementById('speedDial');
+            if (speedDial && !speedDial.contains(e.target)) {
+                document.getElementById('speedDialMenu').classList.remove('open');
+            }
+        });
+
+        // ===== FAQ ACCORDION =====
+        function toggleFAQ(questionEl) {
+            const faqItem = questionEl.parentElement;
+            const wasOpen = faqItem.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
+            if (!wasOpen) {
+                faqItem.classList.add('open');
+            }
+        }
+
+        // ===== TOAST NOTIFICATIONS =====
+        function showToast(type, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            const icons = { success: '✅', info: 'ℹ️', warning: '⚠️' };
+
+            toast.innerHTML = `
+            <span class="toast-icon">${icons[type] || '📢'}</span>
+            <span class="toast-message">${message}</span>
+            <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+        `;
+
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 350);
+            }, 4000);
+        }
+
+        // ===== KEYBOARD ACCESSIBILITY =====
+        document.querySelectorAll('.brand-card').forEach(card => {
+            card.setAttribute('role', 'link');
+            card.setAttribute('tabindex', '0');
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') card.click();
+            });
+        });
+
+        // Initial Badge Sync & Welcome toast
+        updateBadges();
+
+        if (!sessionStorage.getItem('welcomed')) {
+            setTimeout(() => {
+                showToast('info', 'Selamat datang di  Market! 🏍️ Cari part impianmu sekarang.');
+            }, 1500);
+            sessionStorage.setItem('welcomed', 'true');
+        }
+    </script>
+
+</body>
+
+</html>

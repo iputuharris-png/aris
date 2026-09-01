@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sparepart dan aksesoris Yamaha original dan aftermarket terpilih. NMAX, Aerox, XMAX, R15 - Garasi Modif.">
+    <title>Yamaha Parts - Garasi Modif</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <style>
+        /* ===== Yamaha Page Specific Styles ===== */
+
+        .hero-yamaha {
+            position: relative;
+            padding: 120px 8% 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-yamaha::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center top, var(--yamaha-blue-glow) 0%, transparent 60%);
+            z-index: 0;
+        }
+
+        .hero-yamaha .hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--yamaha-blue);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .hero-yamaha h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 14px;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-yamaha p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto 28px;
+            animation: fadeInUp 0.8s ease-out 0.15s both;
+        }
+
+        .hero-yamaha .btn-primary {
+            background: linear-gradient(135deg, var(--yamaha-blue), #48cae4);
+            box-shadow: 0 4px 20px var(--yamaha-blue-glow);
+        }
+
+        .hero-yamaha .btn-primary:hover {
+            box-shadow: 0 8px 35px rgba(0, 119, 182, 0.4);
+        }
+
+        /* Filter Kategori */
+        .filter-section {
+            padding: 50px 8% 20px;
+            text-align: center;
+        }
+
+        .filter-section h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 10px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--yamaha-blue);
+            color: #fff;
+            border-color: var(--yamaha-blue);
+            box-shadow: 0 4px 15px var(--yamaha-blue-glow);
+        }
+
+        /* Produk Section */
+        .produk-section {
+            padding: 40px 8% 80px;
+        }
+
+        .produk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .produk-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produk-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .produk-card .img-wrapper {
+            overflow: hidden;
+        }
+
+        .produk-card .produk-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: var(--bg-secondary);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .produk-card:hover .produk-img {
+            transform: scale(1.07);
+        }
+
+        .tag-kategori {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: rgba(0, 119, 182, 0.15);
+            color: var(--yamaha-blue);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0, 119, 182, 0.2);
+        }
+
+        .produk-card .card-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .produk-card h3 {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .produk-card .harga {
+            color: var(--accent-teal);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            margin-top: auto;
+        }
+
+        .btn-wa-buy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+            border: none;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-wa-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--accent-green-glow);
+        }
+
+        /* Page Footer */
+        .page-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            padding: 25px 8%;
+            text-align: center;
+        }
+
+        .page-footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-yamaha {
+                padding: 80px 5% 50px;
+            }
+
+            .filter-section,
+            .produk-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar" id="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="images/LOGO.jpeg" alt="Riss Market Logo" class="logo-img">
+            <div class="logo">Riss<span>Market</span></div>
+        </a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="index.html#kategori">Part & Aksesoris</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="https://wa.me/6285956423009" class="btn-head">💬 Tanya Mekanik</a>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-yamaha">
+        <div class="hero-inner">
+            <span class="hero-badge">Yamaha Genuine Parts</span>
+            <h1>Pusat Sparepart Yamaha</h1>
+            <p>Part original dan aftermarket terpilih untuk NMAX, Aerox, XMAX, R15 dan motor Yamaha lainnya.</p>
+            <a href="#produk" class="btn-primary">Lihat Katalog</a>
+        </div>
+    </section>
+
+    <!-- Filter Kategori -->
+    <section class="filter-section">
+        <h2>Filter Kategori</h2>
+        <p class="section-subtitle">Pilih kategori part sesuai kebutuhan motor Yamaha kamu</p>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterProduk('semua')">Semua</button>
+            <button class="filter-btn" onclick="filterProduk('mesin')">⚙️ Mesin</button>
+            <button class="filter-btn" onclick="filterProduk('rem')">🛞 Pengereman</button>
+            <button class="filter-btn" onclick="filterProduk('listrik')">⚡ Kelistrikan</button>
+            <button class="filter-btn" onclick="filterProduk('body')">🏍️ Body & Cover</button>
+        </div>
+    </section>
+
+    <!-- Daftar Produk -->
+    <section id="produk" class="produk-section">
+        <div class="produk-grid">
+            <div class="produk-card fade-in" data-kategori="mesin">
+                <div class="img-wrapper">
+                    <img src="images/kirian.jpg" alt="Piston Kit NMAX" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori">Mesin</span>
+                    <h3>Piston Kit NMAX 155</h3>
+                    <p class="harga">Rp 185.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Piston Kit NMAX 155')">💬 Beli via WA</button>
+                </div>
+            </div>
+            <div class="produk-card fade-in" data-kategori="rem">
+                <div class="img-wrapper">
+                    <img src="images/masterem.webp" alt="Kampas Rem Aerox" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori">Pengereman</span>
+                    <h3>Kampas Rem Depan Aerox</h3>
+                    <p class="harga">Rp 65.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Kampas Rem Depan Aerox')">💬 Beli via WA</button>
+                </div>
+            </div>
+            <div class="produk-card fade-in" data-kategori="listrik">
+                <div class="img-wrapper">
+                    <img src="images/shok.jpg" alt="CDI Racing" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori">Kelistrikan</span>
+                    <h3>CDI Racing BRT NMAX</h3>
+                    <p class="harga">Rp 320.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('CDI Racing BRT NMAX')">💬 Beli via WA</button>
+                </div>
+            </div>
+            <div class="produk-card fade-in" data-kategori="body">
+                <div class="img-wrapper">
+                    <img src="images/KENALPOT.jpg" alt="Cover Body XMAX" class="produk-img">
+                </div>
+                <div class="card-info">
+                    <span class="tag-kategori">Body & Cover</span>
+                    <h3>Cover Body Set XMAX</h3>
+                    <p class="harga">Rp 450.000</p>
+                    <button class="btn-wa-buy" onclick="pesanWA('Cover Body Set XMAX')">💬 Beli via WA</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <p>&copy; 2026 Garasi Modif — Yamaha Parts. Buka Tiap Hari 09.00 - 21.00 WITA.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function pesanWA(namaProduk) {
+            const nomorWA = "6285956423009";
+            const pesan = `Halo, saya ingin membeli sparepart Yamaha: *${namaProduk}*. Apakah stok masih tersedia?`;
+            window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        // Filter produk
+        function filterProduk(kategori) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards
+            document.querySelectorAll('.produk-card').forEach(card => {
+                if (kategori === 'semua' || card.dataset.kategori === kategori) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Hamburger menu toggle
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navMenu').classList.toggle('open');
+        }
+
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('hamburger').classList.remove('active');
+                document.getElementById('navMenu').classList.remove('open');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>
